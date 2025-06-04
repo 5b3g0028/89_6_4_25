@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>用事件屬性設定事件</title>
+</head>
+<body>
+
+<button id="checkout">結算</button>
+<button id="clearCart">清空</button>
+<br><br>
+
+<img src="174900618088638_P31966524.jpg" width="200"><br />
+價格：$10<br/>
+<button class="add" data-price="10">加入購物車</button>
+<br/><br/>
+
+<img src="1648951162796-16fd7eb8aa2d44e89774223e811a5af2-1200x900.jpg" width="200"><br />
+價格：$11<br/>
+<button class="add" data-price="11">加入購物車</button>
+<br/><br/>
+
+<script>
+  let total = 0;
+
+  const addButtons = document.querySelectorAll('.add');
+  addButtons.forEach(button => {
+    button.onclick = function() {
+      const price = parseFloat(this.dataset.price);
+      total += price;
+      console.log('加入商品 $' + price + '，目前累計: $' + total);
+    };
+  });
+
+  const checkoutBtn = document.getElementById('checkout');
+  checkoutBtn.onclick = function() {
+    checkoutBtn.textContent = '結算: $' + total;
+    console.log('結算金額：$' + total);
+  };
+
+  const clearBtn = document.getElementById('clearCart');
+  clearBtn.onclick = function() {
+    total = 0;
+    checkoutBtn.textContent = '結算';
+    console.log('清空購物車，金額歸零');
+  };
+</script>
+
+</body>
+</html>
